@@ -1,0 +1,66 @@
+#N canvas -13 -13 1920 916 12;
+#X obj 9 20 loadbang;
+#X msg 41 69 \; pd dsp 1;
+#X obj 168 122 *~ 1;
+#X obj 168 146 dac~;
+#X obj 168 96 readsf~;
+#X obj 169 44 r CoinSound;
+#X msg 168 71 open CoinSound.wav \, 1;
+#X obj 32 393 netsend;
+#X msg 59 353 send foo \$1;
+#X floatatom 59 313 0 0 0 0 - - -;
+#X msg 48 246 disconnect;
+#X floatatom 32 420 0 0 0 0 - - -;
+#X text 91 301 Send messages to "foo" on remote machine, f 16;
+#X obj 78 421 print backward;
+#X text 83 186 TCP \, FUDI;
+#X floatatom 333 423 0 0 0 0 - - -;
+#X text 367 424 <--- number of open connections;
+#X obj 231 423 print tcp;
+#X text 365 311 creation arguments:;
+#X text 433 330 optional -u flag for UDP;
+#X text 433 348 optional -b flag for binary;
+#X text 433 384 optional port number;
+#X msg 243 245 listen 0;
+#X text 451 210 listen message to set or change port;
+#X text 347 245 (0 or negative number to close);
+#X msg 252 298 send foo \$1;
+#X floatatom 252 275 0 0 0 0 - - -;
+#X text 289 275 "send" (for TCP connections only) sends back to connected
+netreceive objects, f 76;
+#X text 433 366 optional -f flag for from address & port outlet (0.51+)
+;
+#X text 433 403 optional UDP hostname or multicast address (0.51+)
+;
+#X obj 233 328 netreceive;
+#X obj 9 44 t b b b;
+#X obj 289 168 sel 1;
+#X obj 289 192 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 285 141 1;
+#X msg 2 207 connect localhost [portnumberhere ];
+#X msg 253 209 listen 135 [portnumberhere ];
+#X text 406 156 I have not included the portnumber to avoid potential
+privacy concerns;
+#X connect 0 0 31 0;
+#X connect 2 0 3 0;
+#X connect 2 0 3 1;
+#X connect 4 0 2 0;
+#X connect 5 0 6 0;
+#X connect 6 0 4 0;
+#X connect 7 0 11 0;
+#X connect 7 1 13 0;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 22 0 30 0;
+#X connect 25 0 30 0;
+#X connect 26 0 25 0;
+#X connect 30 0 17 0;
+#X connect 30 1 15 0;
+#X connect 31 0 36 0;
+#X connect 31 1 1 0;
+#X connect 32 0 33 0;
+#X connect 34 0 32 0;
+#X connect 35 0 7 0;
+#X connect 36 0 30 0;
